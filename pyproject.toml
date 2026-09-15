@@ -1,0 +1,55 @@
+[project]
+name = "md2xlsx"
+dynamic = ["version"]
+description = "Build multi-sheet xlsx workbooks from flavored Markdown"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "rxxuzi" }]
+requires-python = ">=3.8"
+dependencies = ["openpyxl>=3.1"]
+keywords = ["markdown", "excel", "xlsx", "openpyxl", "spreadsheet", "converter"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Office/Business :: Financial :: Spreadsheet",
+    "Topic :: Text Processing :: Markup :: Markdown",
+]
+
+[project.urls]
+Homepage = "https://github.com/rxxuzi/md2xlsx"
+Documentation = "https://github.com/rxxuzi/md2xlsx/tree/main/docs"
+Issues = "https://github.com/rxxuzi/md2xlsx/issues"
+
+[project.scripts]
+md2xlsx = "md2xlsx:main"
+
+[dependency-groups]
+dev = ["pytest>=8", "ruff>=0.5"]
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = ["md2xlsx"]
+
+[tool.setuptools.dynamic]
+version = { attr = "md2xlsx.__version__" }
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+ignore = ["DTZ001"]  # Excel dates are naive by design
+
+[tool.ruff.lint.isort]
+known-first-party = ["md2xlsx"]

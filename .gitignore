@@ -1,0 +1,34 @@
+# Whitelist .gitignore — ignore every top-level entry, then re-include only what
+# we track. Uses `/*` (root level only, NO `!*/`), so ignored trees like .venv/
+# or build/ are never descended into and cannot leak. To track a new file/dir,
+# add a `!/name` line below; everything else is ignored by default.
+
+# ignore every top-level entry
+/*
+
+# root files we keep
+!/.gitignore
+!/.gitattributes
+!/README.md
+!/LICENSE
+!/CLAUDE.md
+!/SKILL.md
+!/md2xlsx.py
+!/pyproject.toml
+!/uv.lock
+
+# trees we track (whole directories)
+!/docs/
+!/examples/
+!/tests/
+!/.github/
+
+# noise inside tracked trees
+__pycache__/
+*.py[cod]
+.DS_Store
+Thumbs.db
+
+# generated workbooks, except the committed example output
+*.xlsx
+!/examples/sample.xlsx
